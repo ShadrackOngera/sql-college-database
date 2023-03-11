@@ -96,6 +96,14 @@ UPDATE loanedItems SET userID = 3 WHERE userID = 3;
 UPDATE loanedItems SET userID = 4 WHERE userID = 4;
 UPDATE loanedItems SET userID = 2 WHERE userID = 5;
 
+ALTER TABLE loanedItems ADD column libraryMaterialID  INT;
+ALTER TABLE loanedItems ADD CONSTRAINT materials_fk_loanedItems FOREIGN KEY (libraryMaterialID) REFERENCES libraryMaterials(material_id);
+UPDATE loanedItems SET libraryMaterialID = 1 WHERE loan_id = 1;
+UPDATE loanedItems SET libraryMaterialID = 2 WHERE loan_id = 2;
+UPDATE loanedItems SET libraryMaterialID = 5 WHERE loan_id = 3;
+UPDATE loanedItems SET libraryMaterialID = 4 WHERE loan_id = 4;
+UPDATE loanedItems SET libraryMaterialID = 3 WHERE loan_id = 5;
+
 
 SHOW TABLES;
 
