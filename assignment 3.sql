@@ -1,7 +1,7 @@
 CREATE DATABASE library;
 USE library;
 
--- CREATE TABLE patrons ( patrons_id INT PRIMARY KEY AUTO_INCREMENT, first_name VARCHAR(40) NOT NULL, last_name VARCHAR(40) NOT NULL, address VARCHAR(255), city VARCHAR(20), state VARCHAR(20), zip INT NOT NULL, library_card_id VARCHAR()5);
+
 CREATE TABLE patrons (
     patrons_id INT NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(50) NOT NULL,
@@ -122,6 +122,7 @@ SELECT * FROM libraryMaterials;
 SELECT * FROM patronsLoans;
 SELECT * FROM users;
 SELECT * FROM loanedItems;
+
 
 
 
