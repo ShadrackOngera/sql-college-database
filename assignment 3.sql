@@ -1,20 +1,31 @@
 CREATE DATABASE library;
 USE library;
 
-CREATE TABLE patrons ( patrons_id INT PRIMARY KEY AUTO_INCREMENT, first_name VARCHAR(40) NOT NULL, last_name VARCHAR(40) NOT NULL, address VARCHAR(255), city VARCHAR(20), state VARCHAR(20), zip VARCHAR(20), library_card_id VARCHAR()5) UNIQUE;
+-- CREATE TABLE patrons ( patrons_id INT PRIMARY KEY AUTO_INCREMENT, first_name VARCHAR(40) NOT NULL, last_name VARCHAR(40) NOT NULL, address VARCHAR(255), city VARCHAR(20), state VARCHAR(20), zip INT NOT NULL, library_card_id VARCHAR()5);
+CREATE TABLE patrons (
+    patrons_id INT NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    address VARCHAR(100) NOT NULL,
+    city VARCHAR(50) NOT NULL,
+    state VARCHAR(50) NOT NULL,
+    zip_code VARCHAR(10) NOT NULL,
+    PRIMARY KEY (patrons_id),
+    UNIQUE KEY (patrons_id)
+);
 CREATE TABLE collections ( collection_id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(30) NOT NULL);
 CREATE TABLE categories ( category_id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(30) NOT NULL);
-CREATE TABLE libraryMaterials ( material_id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(30) NOT NULL), length VARCHAR(30);
+CREATE TABLE libraryMaterials ( material_id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(30) NOT NULL, length VARCHAR(30));
 CREATE TABLE patronsLoans ( patrons_loan_id INT PRIMARY KEY AUTO_INCREMENT, loaned BOOLEAN NOT NULL);
 CREATE TABLE users ( user_id INT PRIMARY KEY AUTO_INCREMENT, first_name VARCHAR(40) NOT NULL, last_name VARCHAR(40) NOT NULL, address VARCHAR(255), city VARCHAR(20), state VARCHAR(20), zip VARCHAR(20));
 CREATE TABLE loanedItems ( loan_id INT PRIMARY KEY AUTO_INCREMENT, dateLoaned VARCHAR(50));
 
 
-INSERT INTO patrons VALUE (1, "Jane", "Doe", "27th Avenue", "Boston", "PA", "87654", "34KD8");
-INSERT INTO patrons VALUE (2, "James", "johnson", "27th circle street avenue", "Manchester", "PA", "23456", "90RW8");
-INSERT INTO patrons VALUE (3, "elvin", "Eriksen", "30th Street", "Boston", "WA", "23456", "04DD8");
-INSERT INTO patrons VALUE (4, "Brian", "Doe", "Mehems Highway Avenue", "Boston", "LA", "12345", "34CD8");
-INSERT INTO patrons VALUE (5, "John", "Zed", "27th Circle", "Boston", "WI", "2399", "54RD8");
+INSERT INTO patrons VALUE (1, "Jane", "Doe", "27th Avenue", "Boston", "PA", "87654");
+INSERT INTO patrons VALUE (2, "James", "johnson", "27th circle street avenue", "Manchester", "PA", "23456");
+INSERT INTO patrons VALUE (3, "elvin", "Eriksen", "30th Street", "Boston", "WA", "23456");
+INSERT INTO patrons VALUE (4, "Brian", "Doe", "Mehems Highway Avenue", "Boston", "LA", "12345");
+INSERT INTO patrons VALUE (5, "John", "Zed", "27th Circle", "Boston", "WI", "23989");
 
 INSERT INTO collections VALUE (1, "Books");
 INSERT INTO collections VALUE (2, "Magazines");
@@ -71,11 +82,11 @@ UPDATE libraryMaterials SET CategoryID = 1 WHERE material_id = 5;
 
 ALTER TABLE patronsLoans ADD column patronsID  INT;
 ALTER TABLE patronsLoans ADD CONSTRAINT patrons_fk_patronsLoans FOREIGN KEY (patronsID) REFERENCES patrons(patrons_id);
-UPDATE patronsLoans SET patronsID = 1 WHERE patronsLoans = 1;
-UPDATE patronsLoans SET patronsID = 2 WHERE patronsLoans = 2;
-UPDATE patronsLoans SET patronsID = 5 WHERE patronsLoans = 3;
-UPDATE patronsLoans SET patronsID = 3 WHERE patronsLoans = 4;
-UPDATE patronsLoans SET patronsID = 4 WHERE patronsLoans = 5;
+UPDATE patronsLoans SET patronsID = 1 WHERE patrons_loan_id = 1;
+UPDATE patronsLoans SET patronsID = 2 WHERE patrons_loan_id = 2;
+UPDATE patronsLoans SET patronsID = 5 WHERE patrons_loan_id = 3;
+UPDATE patronsLoans SET patronsID = 3 WHERE patrons_loan_id = 4;
+UPDATE patronsLoans SET patronsID = 4 WHERE patrons_loan_id = 5;
 
 ALTER TABLE loanedItems ADD column userID  INT;
 ALTER TABLE loanedItems ADD CONSTRAINT users_fk_loanedItems FOREIGN KEY (userID) REFERENCES users(user_id);
