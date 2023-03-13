@@ -4,17 +4,22 @@ USE tp0010;
 select * from 148students.states;
 
 -- Question One code
-SELECT region, SUM(population) AS total_population
+SELECT region, SUM(population) AS Total_Population_of_Region
 FROM 148students.states
 GROUP BY region
-ORDER BY total_population DESC;
+ORDER BY Total_Population_of_Region DESC;
 
 
 -- Question 2 code
-SELECT region, MIN(year) AS first_state_established
+SELECT region, MIN(year) AS First_state_Established
 FROM 148students.states
 GROUP BY region
-ORDER BY first_state_established ASC;
+ORDER BY First_state_Established ASC;
 
-
+-- Question 3 code
+SELECT region, COUNT(*) AS Number_of_states_established_after_1850
+FROM 148students.states
+WHERE year > 1850
+GROUP BY region
+ORDER BY Number_of_states_established_after_1850 DESC;
 
