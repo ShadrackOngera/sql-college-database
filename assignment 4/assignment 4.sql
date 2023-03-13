@@ -1,5 +1,4 @@
 SHOW DATABASES;
-USE tp0010;
 
 select * from 148students.states;
 
